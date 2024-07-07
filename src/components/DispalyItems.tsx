@@ -29,7 +29,7 @@ export class DispalyItems extends Component<IProps> {
           <li key={item.id}>
             <h3>{item.title}</h3>
             <img className={styles.imgItem} src={this.isJsonString(item.images)[0]} alt="product" />
-
+            <div>ddd</div>
             <p>{item.description}</p>
           </li>
         ))}
