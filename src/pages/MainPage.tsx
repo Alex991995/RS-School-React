@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrayProducts } from '../types/fetchTypes';
 
 import DispalyItems from '../components/DispalyItems';
@@ -6,93 +6,74 @@ import Loader from '../components/Loader';
 
 import styles from '../styles/MainPage.module.css';
 
-interface IProps {}
+function MainPage() {
+  const [data, setData] = useState<ArrayProducts | undefined>(undefined);
+  const [value, setValue] = useState(localStorage.getItem('title') || '');
+  const [loading, setLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
-interface IState {
-  data: undefined | ArrayProducts;
-  input: string;
-  loading: boolean;
-  hasError: boolean;
-}
-class MainPage extends Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
+  useEffect(() => {
+    fetchData(value).then(response => setData(response));
+  }, []);
 
-    this.state = {
-      data: undefined,
-      input: localStorage.getItem('title') || '',
-      loading: false,
-      hasError: false,
-    };
+  useEffect(() => {
+    if (hasError) throwErrorFunction();
+  }, [hasError]);
+
+  function throwErrorFunction() {
+    throw new Error('Check ErrorBoundary');
   }
 
-  async componentDidMount() {
-    const response = await this.fetchData(this.state.input || '');
-    this.setState({ data: response });
-  }
-
-  handelData = async () => {
-    const response = await this.fetchData(this.state.input);
-    this.setState({ data: response });
-  };
-
-  handleChange = (title: string) => {
+  function handleChange(title: string) {
     const value = title.trim();
     localStorage.setItem('title', value);
-    this.setState({ input: value });
-  };
+    setValue(value);
+  }
 
-  fetchData = async (title: string): Promise<ArrayProducts | undefined> => {
-    this.setState({ loading: true });
+  async function handelData() {
+    const response = await fetchData(value);
+    setData(response);
+  }
+
+  async function fetchData(title: string): Promise<ArrayProducts | undefined> {
+    setLoading(true);
     try {
       const response = await fetch(
         `https://api.escuelajs.co/api/v1/products/?title=${title}&offset=0&limit=10`,
       );
       const result = response.json();
-      this.setState({ loading: false });
+      setLoading(false);
       return result;
     } catch (err) {
-      this.setState({ loading: false });
+      setLoading(false);
       console.error(err);
       throw new Error('Cannot fetch data');
     }
-  };
-
-  throwErrorFunction = () => {
-    throw new Error('Cannot fetch data');
-  };
-
-  componentDidUpdate(): void {
-    if (this.state.hasError) {
-      this.throwErrorFunction();
-    }
   }
 
-  render() {
-    return (
-      <section className={styles.manBox}>
-        <div className={styles.searchBox}>
-          <div className={styles.fetchDataBox}>
-            <input
-              className={styles.input}
-              value={this.state.input}
-              onChange={e => this.handleChange(e.target.value)}
-              placeholder="Search"
-            />
-            <button className={`button`} onClick={this.handelData}>
-              Search
-            </button>
-          </div>
-
-          <button className={`button`} onClick={() => this.setState({ hasError: true })}>
-            Let's make boom
+  return (
+    <section className={styles.manBox}>
+      <div className={styles.searchBox}>
+        <div className={styles.fetchDataBox}>
+          <input
+            className={styles.input}
+            value={value}
+            onChange={e => handleChange(e.target.value)}
+            placeholder="Search"
+          />
+          <button className={`button`} onClick={handelData}>
+            Search
           </button>
         </div>
 
-        {this.state.loading ? <Loader /> : <DispalyItems data={this.state.data || undefined} />}
-      </section>
-    );
-  }
+        <button className={`button`} onClick={() => setHasError(true)}>
+          Let's make boom
+        </button>
+      </div>
+
+      {loading ? <Loader /> : <DispalyItems data={data || undefined} />}
+    </section>
+  );
 }
 
 export default MainPage;
