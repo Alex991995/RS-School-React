@@ -1,6 +1,7 @@
 .manBox {
-  display: grid;
-  grid-template-rows: 200px 1fr;
+  display: inline-grid;
+  /* grid-template-rows: 100%; */
+  /* grid-template-columns: 50%; */
 }
 
 .searchBox {

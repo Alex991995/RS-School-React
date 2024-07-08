@@ -12,6 +12,7 @@ module.exports = {
   rules: {
     'react-compiler/react-compiler': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
+    "react-hooks/exhaustive-deps": "off",
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
   },
 };
