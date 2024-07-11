@@ -2,7 +2,11 @@
   /* display: inline-grid; */
   /* grid-template-rows: 100%; */
   /* grid-template-columns: 50%; */
-  border: 1px solid sienna;
+  /* display: flex; */
+
+  /* flex-direction: column; */
+  display: grid;
+  grid-template-rows: 56px minmax(450px, auto) 56px;
 }
 
 .searchBox {

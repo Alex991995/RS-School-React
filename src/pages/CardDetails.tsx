@@ -3,9 +3,14 @@ import { useParams } from 'react-router-dom';
 import { Product } from '../types/fetchTypes';
 import { useNavigate } from 'react-router-dom';
 
-function Details() {
+import { isJsonString } from '../utils/functionHelpers';
+import styles from '../styles/CardDetails.module.css';
+import Loader from '../components/Loader';
+
+function CardDetails() {
   const { id } = useParams();
   const [data, setDate] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
@@ -15,16 +20,34 @@ function Details() {
   }, [id]);
 
   async function fetchSingleProduct() {
+    setLoading(true);
     const response = await fetch(`https://api.escuelajs.co/api/v1/products/${id}`);
     if (!response.ok) throw new Error('Cannot fetch data');
     const res = response.json();
+    setLoading(false);
     return res;
   }
 
+  console.log(data);
+
   return (
-    <section ref={wrapperRef} className="details">
-      <div>{data?.title}</div>;<button className={`close-bnt`}>X</button>
-    </section>
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <section ref={wrapperRef} className={styles.details}>
+          <div className={styles.infoItem}>
+            <div>{data?.title}</div>
+
+            {data?.images && (
+              <img className={styles.imgItem} src={isJsonString(data.images)[0]} alt="product" />
+            )}
+            <p>{data?.description}</p>
+          </div>
+          <button className={`button close-bnt`}>X</button>
+        </section>
+      )}
+    </>
   );
 }
 
@@ -47,4 +70,4 @@ function useOutsideAlerter(ref: RefObject<HTMLElement>) {
   }, [ref]);
 }
 
-export default Details;
+export default CardDetails;

@@ -4,16 +4,19 @@
 
 .wrapper {
   display: grid;
-  grid-template-columns: minmax(300px, 50%) 1fr;
+  grid-template-columns: auto 1fr;
+  gap: 50px;
+  max-width: 1040px;
+  margin: 0 auto;
 }
 
 a {
   text-decoration: none;
 }
 
-.details {
+/* .details {
   border: 1px solid black;
-}
+} */
 
 .button {
   background-color: #405cf5;
@@ -22,7 +25,7 @@ a {
   cursor: pointer;
   font-size: 100%;
   height: 44px;
-  margin: 12px 0 0;
+
   outline: none;
   padding: 0 25px;
   transition:

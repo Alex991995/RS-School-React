@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useRestoreQueryParams } from '../hooks/useRestoreQueryParams';
 import { ArrayProducts } from '../types/fetchTypes';
 
-import DispalyItems from '../components/DispalyItems';
+import CardList from '../components/CardList ';
 import Loader from '../components/Loader';
 
 import styles from '../styles/MainPage.module.css';
@@ -73,7 +73,7 @@ function MainPage() {
         </div>
       </div>
 
-      {loading ? <Loader /> : <DispalyItems data={data || undefined} />}
+      {loading ? <Loader /> : <CardList data={data || undefined} />}
 
       <Pagination page={page || '1'} setPage={setPage} />
     </section>

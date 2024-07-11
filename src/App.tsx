@@ -3,7 +3,7 @@
 // import styles from './App.module.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './Layout';
-import Details from './pages/Details';
+import CardDetails from './pages/CardDetails';
 
 const router = createBrowserRouter([
   {
@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/details/:id',
-        element: <Details />,
+        element: <CardDetails />,
       },
     ],
   },
