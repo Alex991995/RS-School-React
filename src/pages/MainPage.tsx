@@ -1,37 +1,43 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useRestoreQueryParams } from '../hooks/useRestoreQueryParams';
 import { ArrayProducts } from '../types/fetchTypes';
 
 import DispalyItems from '../components/DispalyItems';
 import Loader from '../components/Loader';
 
 import styles from '../styles/MainPage.module.css';
+import Pagination from '../components/Pagination';
 
 function MainPage() {
   const [data, setData] = useState<ArrayProducts | undefined>(undefined);
-  const [value, setValue] = useState(localStorage.getItem('title') || '');
+  const [title, setTitle] = useRestoreQueryParams('title');
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams.get('page'));
+  const [page, setPage] = useRestoreQueryParams('page');
+  console.log(page);
+  // const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
-  const [hasError, setHasError] = useState(false);
+  // const [page, setPage] = useState(searchParams.get('page') || '1');
+  // const [page, setPage] = useState("1");
+
+  console.log(page);
 
   useEffect(() => {
-    fetchData(value).then(response => setData(response));
-  }, []);
-
-  useEffect(() => {
-    if (hasError) throwErrorFunction();
-  }, [hasError]);
-
-  function throwErrorFunction() {
-    throw new Error('Check ErrorBoundary');
-  }
+    fetchData(title || '').then(response => setData(response));
+    console.log('qqqqqqqqq');
+    const queryPage = new URLSearchParams({ page: page || '1' });
+    setSearchParams(queryPage);
+  }, [page]);
 
   function handleChange(title: string) {
     const value = title.trim();
-    localStorage.setItem('title', value);
-    setValue(value);
+    setTitle(value);
   }
 
   async function handelData() {
-    const response = await fetchData(value);
+    const response = await fetchData(title || '');
     setData(response);
   }
 
@@ -39,7 +45,7 @@ function MainPage() {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://api.escuelajs.co/api/v1/products/?title=${title}&offset=0&limit=10`,
+        `https://api.escuelajs.co/api/v1/products/?title=${title}&offset=${page || '1'}&limit=10`,
       );
       const result = response.json();
       setLoading(false);
@@ -57,7 +63,7 @@ function MainPage() {
         <div className={styles.fetchDataBox}>
           <input
             className={styles.input}
-            value={value}
+            value={title || ''}
             onChange={e => handleChange(e.target.value)}
             placeholder="Search"
           />
@@ -65,15 +71,29 @@ function MainPage() {
             Search
           </button>
         </div>
-
-        <button className={`button`} onClick={() => setHasError(true)}>
-          Let's make boom
-        </button>
       </div>
 
       {loading ? <Loader /> : <DispalyItems data={data || undefined} />}
+
+      <Pagination page={page || '1'} setPage={setPage} />
     </section>
   );
 }
+
+// function useOutsideAlerter(ref) {
+//   useEffect(() => {
+//     function handleClickOutside(event) {
+//       if (ref.current && !ref.current.contains(event.target)) {
+//         alert("You clicked outside of me!");
+//       }
+//     }
+//     // Bind the event listener
+//     document.addEventListener("mousedown", handleClickOutside);
+//     return () => {
+//       // Unbind the event listener on clean up
+//       document.removeEventListener("mousedown", handleClickOutside);
+//     };
+//   }, [ref]);
+// }
 
 export default MainPage;

@@ -4,8 +4,10 @@ import { Outlet } from 'react-router-dom';
 function Layout() {
   return (
     <>
-      <MainPage />
-      <Outlet />
+      <div className="wrapper">
+        <MainPage />
+        <Outlet />
+      </div>
     </>
   );
 }

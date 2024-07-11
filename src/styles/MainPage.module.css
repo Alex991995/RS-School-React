@@ -1,11 +1,12 @@
 .manBox {
-  display: inline-grid;
+  /* display: inline-grid; */
   /* grid-template-rows: 100%; */
   /* grid-template-columns: 50%; */
+  border: 1px solid sienna;
 }
 
 .searchBox {
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
 }
 .fetchDataBox {
