@@ -28,8 +28,6 @@ function CardDetails() {
     return res;
   }
 
-  console.log(data);
-
   return (
     <>
       {loading ? (

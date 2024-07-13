@@ -11,24 +11,17 @@ import Pagination from '../components/Pagination';
 
 function MainPage() {
   const [data, setData] = useState<ArrayProducts | undefined>(undefined);
+  const [loading, setLoading] = useState(false);
+
   const [title, setTitle] = useRestoreQueryParams('title');
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  console.log(searchParams.get('page'));
   const [page, setPage] = useRestoreQueryParams('page');
 
-  console.log(page);
-  // const [searchParams, setSearchParams] = useSearchParams();
-  const [loading, setLoading] = useState(false);
-  // const [page, setPage] = useState(searchParams.get('page') || '1');
-  // const [page, setPage] = useState("1");
-
-  console.log(page);
+  const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams.get('page'));
 
   useEffect(() => {
     fetchData(title || '').then(response => setData(response));
-    console.log('qqqqqqqqq');
+
     const queryPage = new URLSearchParams({ page: page || '1' });
     setSearchParams(queryPage);
   }, [page]);
@@ -81,21 +74,5 @@ function MainPage() {
     </section>
   );
 }
-
-// function useOutsideAlerter(ref) {
-//   useEffect(() => {
-//     function handleClickOutside(event) {
-//       if (ref.current && !ref.current.contains(event.target)) {
-//         alert("You clicked outside of me!");
-//       }
-//     }
-//     // Bind the event listener
-//     document.addEventListener("mousedown", handleClickOutside);
-//     return () => {
-//       // Unbind the event listener on clean up
-//       document.removeEventListener("mousedown", handleClickOutside);
-//     };
-//   }, [ref]);
-// }
 
 export default MainPage;
