@@ -14,8 +14,10 @@ function MainPage() {
   const [title, setTitle] = useRestoreQueryParams('title');
 
   const [searchParams, setSearchParams] = useSearchParams();
+
   console.log(searchParams.get('page'));
   const [page, setPage] = useRestoreQueryParams('page');
+
   console.log(page);
   // const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
