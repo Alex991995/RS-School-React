@@ -1,0 +1,32 @@
+.manBox {
+  /* display: inline-grid; */
+  /* grid-template-rows: 100%; */
+  /* grid-template-columns: 50%; */
+  /* display: flex; */
+
+  /* flex-direction: column; */
+  display: grid;
+  grid-template-rows: 56px minmax(450px, auto) 56px;
+}
+
+.searchBox {
+  /* display: flex; */
+  justify-content: space-between;
+}
+.fetchDataBox {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.input {
+  font-size: 18px;
+
+  display: block;
+  border: none;
+  border-bottom: 1px solid #757575;
+  height: 40px;
+}
+.input:focus {
+  outline: none;
+}

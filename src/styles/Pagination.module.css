@@ -1,0 +1,9 @@
+.block-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.button-active {
+  background-color: red !important;
+}

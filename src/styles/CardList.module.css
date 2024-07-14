@@ -1,0 +1,12 @@
+.listItems {
+  /* display: grid; */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  list-style-type: none;
+  gap: 20px;
+  padding: 0;
+}
+
+/* .imgItem {
+  width: 300px;
+  height: 300px;
+} */
