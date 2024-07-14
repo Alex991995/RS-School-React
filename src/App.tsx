@@ -1,7 +1,7 @@
 // import MainPage from './pages/MainPage';
 // import ErrorBoundary from './components/ErrorBoundary';
 // import styles from './App.module.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import Layout from './Layout';
 import CardDetails from './pages/CardDetails';
 
@@ -13,6 +13,10 @@ const router = createBrowserRouter([
       {
         path: '/details/:id',
         element: <CardDetails />,
+      },
+      {
+        path: '*',
+        element: <Navigate to="/notfound" />,
       },
     ],
   },

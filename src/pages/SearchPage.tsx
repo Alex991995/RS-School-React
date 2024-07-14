@@ -3,13 +3,14 @@ import { useSearchParams } from 'react-router-dom';
 import { useRestoreQueryParams } from '../hooks/useRestoreQueryParams';
 import { ArrayProducts } from '../types/fetchTypes';
 
-import CardList from '../components/CardList ';
+import CardList from '../components/CardList';
 import Loader from '../components/Loader';
 
-import styles from '../styles/MainPage.module.css';
+import styles from '../styles/SearchPage.module.css';
 import Pagination from '../components/Pagination';
+import SearchInput from '../components/SearchInput';
 
-function MainPage() {
+function SearchPage() {
   const [data, setData] = useState<ArrayProducts | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
@@ -47,7 +48,6 @@ function MainPage() {
       return result;
     } catch (err) {
       setLoading(false);
-      console.error(err);
       throw new Error('Cannot fetch data');
     }
   }
@@ -55,17 +55,7 @@ function MainPage() {
   return (
     <section className={styles.manBox}>
       <div className={styles.searchBox}>
-        <div className={styles.fetchDataBox}>
-          <input
-            className={styles.input}
-            value={title || ''}
-            onChange={e => handleChange(e.target.value)}
-            placeholder="Search"
-          />
-          <button className={`button`} onClick={handelData}>
-            Search
-          </button>
-        </div>
+        <SearchInput title={title} handleChange={handleChange} handelData={handelData} />
       </div>
 
       {loading ? <Loader /> : <CardList data={data || undefined} />}
@@ -75,4 +65,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export default SearchPage;

@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
-import { Product } from '../types/fetchTypes';
 
 interface ICard {
-  item: Product;
+  id: number;
+  title: string;
 }
 
-function Card({ item }: ICard) {
-  const { id, title } = item;
+function Card({ id, title }: ICard) {
   return (
     <Link to={`/details/${id}`} key={id}>
       <h3>{title}</h3>

@@ -7,7 +7,12 @@ interface IProps {
 }
 
 function CardList({ data }: IProps) {
-  return <ul className={styles.listItems}>{data?.map(item => <Card item={item} />)}</ul>;
+  if (data?.length === 0) return 'No data';
+  return (
+    <ul className={styles.listItems}>
+      {data?.map(item => <Card id={item.id} title={item.title} />)}
+    </ul>
+  );
 }
 
 export default CardList;
