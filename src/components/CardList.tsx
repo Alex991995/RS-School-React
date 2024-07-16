@@ -10,7 +10,7 @@ function CardList({ data }: IProps) {
   if (data?.length === 0) return 'No data';
   return (
     <ul className={styles.listItems}>
-      {data?.map(item => <Card id={item.id} title={item.title} />)}
+      {data?.map(item => <Card key={item.id} id={item.id} title={item.title} />)}
     </ul>
   );
 }

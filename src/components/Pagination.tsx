@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import styles from '../styles/Pagination.module.css';
 import { pagesCutting, range } from '../utils/functionHelpers';
+import { allPages } from '../utils/constats';
 
 interface IPagination {
   setPage: Dispatch<SetStateAction<string>>;
@@ -8,9 +9,7 @@ interface IPagination {
 }
 
 function Pagination({ setPage, page }: IPagination) {
-  const wholePage = 47;
-
-  const getPagesCut = pagesCutting(wholePage, +page);
+  const getPagesCut = pagesCutting(allPages, +page);
   const numberPages = range(getPagesCut.start, getPagesCut.end);
 
   function handlerPage(currentPage: number) {
@@ -24,7 +23,7 @@ function Pagination({ setPage, page }: IPagination) {
   }
 
   function nextPage() {
-    if (+page < wholePage) {
+    if (+page < allPages) {
       setPage(prevPage => String(+prevPage + 1));
     }
   }

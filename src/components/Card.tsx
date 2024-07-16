@@ -7,7 +7,7 @@ interface ICard {
 
 function Card({ id, title }: ICard) {
   return (
-    <Link to={`/details/${id}`} key={id}>
+    <Link to={`/details/${id}`}>
       <h3>{title}</h3>
     </Link>
   );

@@ -17,8 +17,7 @@ function SearchPage() {
   const [title, setTitle] = useRestoreQueryParams('title');
   const [page, setPage] = useRestoreQueryParams('page');
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams.get('page'));
+  const [, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     fetchData(title || '').then(response => setData(response));

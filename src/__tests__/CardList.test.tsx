@@ -6,6 +6,7 @@ describe('CardList component', () => {
     render(<CardList data={[]} />);
     expect(screen.getByText('No data')).toBeInTheDocument();
   });
+
   it('show li', () => {
     const listitem = screen.queryAllByRole('listitem');
     listitem.forEach(li => {

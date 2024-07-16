@@ -14,6 +14,7 @@ function CardDetails() {
 
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
+  console.log(data);
 
   useEffect(() => {
     fetchSingleProduct().then(response => setDate(response));

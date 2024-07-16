@@ -21,7 +21,6 @@ export function pagesCutting(wholePage: number, currentPage: number) {
 }
 
 export function isJsonString(arr: string[]) {
-  // if(arr) return ''
   try {
     const parseArr = JSON.parse(arr.join());
     return parseArr;
