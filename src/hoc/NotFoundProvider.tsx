@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
-import NotFoundPage from './NotFound';
+import NotFoundPage from '../components/NotFound';
 
 function NotFoundProvider({ children }: { children: JSX.Element | JSX.Element[] }) {
   const location = useLocation();

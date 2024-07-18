@@ -10,6 +10,7 @@ function SearchInput({ title, handleChange, handelData }: ISearchInput) {
   return (
     <div className={styles.fetchDataBox}>
       <input
+        data-testid="input"
         className={styles.input}
         value={title}
         onChange={e => handleChange(e.target.value)}

@@ -1,16 +1,10 @@
 .manBox {
-  /* display: inline-grid; */
-  /* grid-template-rows: 100%; */
-  /* grid-template-columns: 50%; */
-  /* display: flex; */
-
-  /* flex-direction: column; */
   display: grid;
   grid-template-rows: 56px minmax(450px, auto) 56px;
+  margin-top: 20px;
 }
 
 .searchBox {
-  /* display: flex; */
   justify-content: space-between;
 }
 .fetchDataBox {
