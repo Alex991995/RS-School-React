@@ -14,7 +14,6 @@ function SearchPage() {
   const [title, setTitle] = useRestoreQueryParams('title');
   const [page, setPage] = useRestoreQueryParams('page');
   const [trigger, { data, isFetching }] = useLazyGetProductQuery();
-  // const {data, isFetching, refetch} = useGetProductQuery({title:title, page:page })
   const [, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -35,7 +34,7 @@ function SearchPage() {
   }
 
   return (
-    <section className={styles.manBox}>
+    <section className={`mainPage ${styles.manBox}`}>
       <div className={styles.searchBox}>
         <SearchInput title={title} handleChange={handleChange} handelData={callData} />
       </div>

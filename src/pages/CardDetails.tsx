@@ -33,7 +33,7 @@ function CardDetails() {
       {loading ? (
         <Loader />
       ) : (
-        <section ref={wrapperRef} className={styles.details}>
+        <section ref={wrapperRef} className={`details ${styles.details}`}>
           <div className={styles.infoItem}>
             <div>{data?.title}</div>
 
@@ -54,10 +54,13 @@ function useOutsideAlerter(ref: RefObject<HTMLElement>) {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (
-        (ref && ref.current && event && !ref.current.contains(event.target as Node)) ||
-        (event.target instanceof Element && event.target.classList.contains('close-bnt'))
-      ) {
+      const mainPage = event.target instanceof Element && event.target.closest('.mainPage');
+      const details = event.target instanceof Element && event.target.closest('.details');
+      const closeBtn =
+        event.target instanceof Element && event.target.classList.contains('close-bnt');
+      const labelText =
+        event.target instanceof Element && event.target.classList.contains('label-text');
+      if (closeBtn || (!!mainPage && !details && !labelText)) {
         navigate('/');
       }
     }
