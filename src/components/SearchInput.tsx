@@ -3,7 +3,7 @@ import styles from '../styles/SearchPage.module.css';
 interface ISearchInput {
   title: string;
   handleChange: (title: string) => void;
-  handelData: () => Promise<void>;
+  handelData: () => void;
 }
 
 function SearchInput({ title, handleChange, handelData }: ISearchInput) {

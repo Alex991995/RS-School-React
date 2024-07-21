@@ -4,3 +4,10 @@
   gap: 20px;
   padding: 0;
 }
+
+.item {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 10px;
+}

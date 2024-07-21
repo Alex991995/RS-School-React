@@ -4,7 +4,7 @@ import NotFoundProvider from './hoc/NotFoundProvider';
 import SearchPage from './pages/SearchPage';
 import { Outlet } from 'react-router-dom';
 import { ThemeContext } from './hoc/theme';
-import Button from './components/Button';
+import ButtonTheme from './components/ButtonTheme';
 
 function Layout() {
   const theme = useContext(ThemeContext);
@@ -17,7 +17,7 @@ function Layout() {
             <ErrorBoundary>
               <SearchPage />
               <Outlet />
-              {theme && <Button onSwitch={theme.toggleTheme} theme={theme.theme} />}
+              {theme && <ButtonTheme onSwitch={theme.toggleTheme} theme={theme.theme} />}
             </ErrorBoundary>
           </NotFoundProvider>
         </div>
