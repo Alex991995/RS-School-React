@@ -1,4 +1,3 @@
-import React from 'react';
 import { resetAllProduct } from '../features/slices/productSlice';
 import { useAppDispatch } from '../hooks/reduxHooks';
 import styles from '../styles/SelectedItems.module.css';
