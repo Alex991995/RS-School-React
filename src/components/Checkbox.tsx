@@ -5,7 +5,7 @@ import { useAppDispatch } from '../hooks/reduxHooks';
 import { saveProduct } from '../features/slices/productSlice';
 
 interface CheckboxProps {
-  checked: boolean;
+  checked?: boolean;
   product: Product;
 }
 

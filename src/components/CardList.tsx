@@ -16,10 +16,11 @@ function CardList({ data }: IProps) {
   const [dataWithChecked, setDataWithChecked] = useState<ArrayProducts | undefined>(undefined);
 
   function isCheckedFromStore(arr: Product) {
-    const res = storedProducts.some(item => {
+    const res = storedProducts?.some(item => {
       if (item.id === arr.id) {
         return true;
       }
+      return false;
     });
     return res;
   }

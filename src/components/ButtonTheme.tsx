@@ -6,7 +6,7 @@ interface IButton {
 function Button({ onSwitch, theme }: IButton) {
   return (
     <button onClick={() => onSwitch(!theme)} className="button button__theme">
-      Swith on {theme ? 'light' : 'dark'}
+      Switch on {theme ? 'dark' : 'light'}
     </button>
   );
 }

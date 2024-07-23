@@ -29,7 +29,6 @@ function SearchPage() {
   }
 
   function callData() {
-    console.log(title);
     trigger({ title: title, page: page });
   }
 

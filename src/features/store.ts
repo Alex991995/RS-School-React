@@ -3,8 +3,6 @@ import { productApi } from './slices/apiSlice';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import productReducer from './slices/productSlice';
 
-// Store
-
 const store = configureStore({
   reducer: {
     product: productReducer,

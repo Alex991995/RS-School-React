@@ -1,15 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-// import type { RootState } from '../store'
 
 import { Product, ArrayProducts } from '../../types/fetchTypes';
 
 export interface IStoreProduct {
-  products: ArrayProducts;
+  products: ArrayProducts | undefined;
 }
 
 const initialState: IStoreProduct = {
-  products: [],
+  products: JSON.parse(localStorage.getItem('products') || '') || [],
 };
 
 export const productSlice = createSlice({
@@ -22,20 +21,27 @@ export const productSlice = createSlice({
 
   reducers: {
     saveProduct: (state, { payload }: PayloadAction<Product>) => {
-      if (state.products.length === 0) {
+      if (state.products?.length === 0) {
         state.products.push(payload);
+        localStorage.setItem('products', JSON.stringify(state.products));
       } else {
-        const isExist = state.products.some(item => item.id === payload.id);
+        const isExist = state.products?.some(item => item.id === payload.id);
         if (isExist) {
-          state.products = state.products.filter(item => item.id != payload.id);
-        } else state.products.push(payload);
+          state.products = state.products?.filter(item => item.id != payload.id);
+        } else state.products?.push(payload);
+
+        localStorage.setItem('products', JSON.stringify(state.products));
       }
+    },
+    resetAllProduct: state => {
+      state.products = [];
+      localStorage.setItem('products', JSON.stringify(state.products));
     },
   },
 });
 
 export const { selectProducts } = productSlice.selectors;
 
-export const { saveProduct } = productSlice.actions;
+export const { saveProduct, resetAllProduct } = productSlice.actions;
 
 export default productSlice.reducer;

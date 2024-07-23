@@ -6,6 +6,7 @@
   border-radius: 20px;
   padding: 20px;
   background: linear-gradient(rgb(0, 255, 174), pink);
+  align-self: start;
 }
 
 .imgItem {

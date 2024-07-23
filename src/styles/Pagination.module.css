@@ -1,9 +1,16 @@
+[data-theme='light'] {
+  --bg-color-buttonActive: #ff0000;
+}
+
+[data-theme='dark'] {
+  --bg-color-buttonActive: #405cf5;
+}
+
 .block-buttons {
   display: flex;
-  justify-content: center;
   gap: 10px;
 }
 
 .button-active {
-  background-color: red !important;
+  background-color: var(--bg-color-buttonActive) !important;
 }

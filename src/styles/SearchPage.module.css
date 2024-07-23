@@ -1,7 +1,6 @@
 .manBox {
   display: grid;
-  grid-template-rows: 56px minmax(450px, auto) 56px;
-  margin-top: 20px;
+  grid-template-rows: 56px 650px 56px;
 }
 
 .searchBox {
