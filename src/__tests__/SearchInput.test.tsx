@@ -4,17 +4,18 @@ import userEvent from '@testing-library/user-event';
 
 const mockedOnChange = vi.fn();
 
-describe('Searchinput cimponent', () => {
-  it('input', () => {
+describe('Searchinput component', () => {
+  it('input', async () => {
+    const user = userEvent.setup();
     render(<SearchInput title="title" handleChange={mockedOnChange} handelData={mockedOnChange} />);
     const input = screen.getByTestId('input') as HTMLInputElement;
 
     input.value = '123';
     const button = screen.getByRole('button', { name: 'Search' });
 
-    userEvent.click(button);
+    await user.click(button);
 
     const storage = localStorage.getItem('title');
-    console.log(storage);
+    console.log('storage', storage);
   });
 });

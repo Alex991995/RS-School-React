@@ -5,6 +5,8 @@ import { MemoryRouter, Link } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import CardDetails from '../pages/CardDetails';
 
+import { renderWithProviders } from '../utils/test-utils';
+
 describe('Card component', () => {
   it('Card renders the relevant card data;', () => {
     render(
@@ -14,25 +16,38 @@ describe('Card component', () => {
     );
   });
 
-  it('by click opens CardDetails component', () => {
-    //  const link = screen.getByRole('link')
+  it('Validate that clicking on a card opens a detailed card component', async () => {
+    const user = userEvent.setup();
     render(
       <MemoryRouter>
         <Link to="/hello">Click me</Link>
       </MemoryRouter>,
     );
-    // console.log(   screen.getByText(/Click me/i)     )
-    userEvent.click(screen.getByText(/Click me/i));
+    await user.click(screen.getByText(/Click me/i));
 
-    render(
+    const { container } = renderWithProviders(
       <MemoryRouter>
         <CardDetails />
       </MemoryRouter>,
     );
 
-    const button = screen.queryByRole('button');
+    expect(container).toBeInTheDocument();
+  });
+  it('Check that clicking triggers an additional API call to fetch detailed information', async () => {
+    const user = userEvent.setup();
+    render(
+      <MemoryRouter>
+        <Link to="/hello">Click me</Link>
+      </MemoryRouter>,
+    );
+    await user.click(screen.getByText(/Click me/i));
 
-    // expect(button)
-    console.log('button', button);
+    renderWithProviders(
+      <MemoryRouter>
+        <CardDetails />
+      </MemoryRouter>,
+    );
+    const loader = screen.getByRole('loader');
+    expect(loader).toBeInTheDocument();
   });
 });

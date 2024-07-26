@@ -16,12 +16,12 @@ function Layout() {
   return (
     <>
       <div className="theme" data-theme={theme?.theme ? 'light' : 'dark'}>
+        {theme && <ButtonTheme onSwitch={theme.toggleTheme} theme={theme.theme} />}
         <div className="wrapper">
           <NotFoundProvider>
             <ErrorBoundary>
               <SearchPage />
               <Outlet />
-              {theme && <ButtonTheme onSwitch={theme.toggleTheme} theme={theme.theme} />}
               {storedProducts?.length !== 0 && <SelectedItems storedProducts={storedProducts} />}
             </ErrorBoundary>
           </NotFoundProvider>

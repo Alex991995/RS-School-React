@@ -1,18 +1,21 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { productApi } from './slices/apiSlice';
-import { setupListeners } from '@reduxjs/toolkit/query';
 import productReducer from './slices/productSlice';
 
-const store = configureStore({
-  reducer: {
-    product: productReducer,
-    [productApi.reducerPath]: productApi.reducer,
-  },
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(productApi.middleware),
+export const rootReducer = combineReducers({
+  product: productReducer,
+  [productApi.reducerPath]: productApi.reducer,
 });
 
-setupListeners(store.dispatch);
+export const setupStore = (preloadedState?: Partial<RootState>) => {
+  return configureStore({
+    reducer: rootReducer,
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(productApi.middleware),
+    preloadedState,
+  });
+};
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-export default store;
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore['dispatch'];
+export default setupStore;

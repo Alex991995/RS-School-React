@@ -7,6 +7,6 @@
 .item {
   display: flex;
   align-items: baseline;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 10px;
 }

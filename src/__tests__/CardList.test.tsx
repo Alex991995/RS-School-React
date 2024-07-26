@@ -1,10 +1,13 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import CardList from '../components/CardList';
+import { renderWithProviders } from '../utils/test-utils';
 
 describe('CardList component', () => {
   it('show text if list are empty', () => {
-    render(<CardList data={[]} />);
-    expect(screen.getByText('No data')).toBeInTheDocument();
+    renderWithProviders(<CardList data={[]} />);
+    const noData = screen.getByText('No data');
+
+    expect(noData).toBeInTheDocument();
   });
 
   it('show li', () => {

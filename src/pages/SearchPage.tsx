@@ -8,12 +8,13 @@ import Loader from '../components/Loader';
 import styles from '../styles/SearchPage.module.css';
 import Pagination from '../components/Pagination';
 import SearchInput from '../components/SearchInput';
-import { useLazyGetProductQuery } from '../features/slices/apiSlice';
+// import { useLazyGetProductQuery } from '../features/slices/apiSlice';
+import { productApi } from '../features/slices/apiSlice';
 
 function SearchPage() {
   const [title, setTitle] = useRestoreQueryParams('title');
   const [page, setPage] = useRestoreQueryParams('page');
-  const [trigger, { data, isFetching }] = useLazyGetProductQuery();
+  const [trigger, { data, isFetching }] = productApi.useLazyGetProductQuery();
   const [, setSearchParams] = useSearchParams();
 
   useEffect(() => {

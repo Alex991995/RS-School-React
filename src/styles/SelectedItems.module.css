@@ -7,8 +7,8 @@
 }
 .selectedItems {
   position: absolute;
-  bottom: 30px;
-  right: 39%;
+  bottom: -11px;
+  right: 19%;
 }
 .content {
   text-align: center;

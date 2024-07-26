@@ -8,7 +8,7 @@ export interface IStoreProduct {
 }
 
 const initialState: IStoreProduct = {
-  products: JSON.parse(localStorage.getItem('products') || '') || [],
+  products: JSON.parse(localStorage.getItem('products')!) || [],
 };
 
 export const productSlice = createSlice({
