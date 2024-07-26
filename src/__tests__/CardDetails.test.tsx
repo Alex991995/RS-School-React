@@ -25,7 +25,7 @@ describe('CardDetails', () => {
       wrapper: Wrapper,
     });
     expect(screen.getByRole('loader')).toBeInTheDocument();
-    screen.logTestingPlaygroundURL();
+    screen.debug();
   }),
     it('clicking the close button hides the component', () => {}),
     it('Ensure that clicking the close button hides the component', async () => {});
