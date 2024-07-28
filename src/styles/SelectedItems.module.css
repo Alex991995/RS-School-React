@@ -1,0 +1,36 @@
+[data-theme='light'] {
+  --bg-color-content: #687cee;
+}
+
+[data-theme='dark'] {
+  --bg-color-content: rgb(251, 80, 80);
+}
+.selectedItems {
+  position: absolute;
+  bottom: -11px;
+  right: 19%;
+}
+.content {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 25px;
+  width: 300px;
+  min-height: 120px;
+  background-color: var(--bg-color-content);
+}
+.content__buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content__title {
+  color: aliceblue;
+}
+
+.button__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+}

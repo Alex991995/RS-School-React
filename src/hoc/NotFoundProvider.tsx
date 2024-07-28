@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
-import NotFoundPage from './NotFound';
+import NotFoundPage from '../components/NotFound';
 
-function RouteProvider({ children }: { children: JSX.Element | JSX.Element[] }) {
+function NotFoundProvider({ children }: { children: JSX.Element | JSX.Element[] }) {
   const location = useLocation();
 
   const ComponentNotFound = () => (
@@ -17,4 +17,4 @@ function RouteProvider({ children }: { children: JSX.Element | JSX.Element[] }) 
   return <>{children}</>;
 }
 
-export default RouteProvider;
+export default NotFoundProvider;

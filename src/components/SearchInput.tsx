@@ -3,13 +3,14 @@ import styles from '../styles/SearchPage.module.css';
 interface ISearchInput {
   title: string;
   handleChange: (title: string) => void;
-  handelData: () => Promise<void>;
+  handelData: () => void;
 }
 
 function SearchInput({ title, handleChange, handelData }: ISearchInput) {
   return (
     <div className={styles.fetchDataBox}>
       <input
+        data-testid="input"
         className={styles.input}
         value={title}
         onChange={e => handleChange(e.target.value)}

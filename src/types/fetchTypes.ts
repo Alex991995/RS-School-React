@@ -9,6 +9,7 @@ export interface Product {
   creationAt: string;
   updatedAt: string;
   category: Category;
+  checked: boolean;
 }
 
 export interface Category {

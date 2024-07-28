@@ -1,48 +1,43 @@
-import { useState, useEffect, useRef, RefObject } from 'react';
+import { useEffect, useRef, RefObject } from 'react';
 import { useParams } from 'react-router-dom';
-import { Product } from '../types/fetchTypes';
+
 import { useNavigate } from 'react-router-dom';
 
 import { isJsonString } from '../utils/functionHelpers';
 import styles from '../styles/CardDetails.module.css';
 import Loader from '../components/Loader';
 
+import { productApi } from '../features/slices/apiSlice';
+
 function CardDetails() {
   const { id } = useParams();
-  const [data, setDate] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(false);
+
+  const { data, isFetching } = productApi.useGetSingleProductQuery(id!);
 
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
-
-  useEffect(() => {
-    fetchSingleProduct().then(response => setDate(response));
-  }, [id]);
-
-  async function fetchSingleProduct() {
-    setLoading(true);
-    const response = await fetch(`https://api.escuelajs.co/api/v1/products/${id}`);
-    if (!response.ok) throw new Error('Cannot fetch data');
-    const res = response.json();
-    setLoading(false);
-    return res;
-  }
-
   return (
     <>
-      {loading ? (
+      {isFetching ? (
         <Loader />
       ) : (
-        <section ref={wrapperRef} className={styles.details}>
+        <section ref={wrapperRef} className={`details ${styles.details}`}>
           <div className={styles.infoItem}>
-            <div>{data?.title}</div>
+            <div role="title-detail">{data?.title}</div>
 
             {data?.images && (
-              <img className={styles.imgItem} src={isJsonString(data.images)[0]} alt="product" />
+              <img
+                role="img-detail"
+                className={styles.imgItem}
+                src={isJsonString(data.images)[0]}
+                alt="product"
+              />
             )}
             <p>{data?.description}</p>
           </div>
-          <button className={`button close-bnt`}>X</button>
+          <button role="button-close" className={`button close-bnt`}>
+            X
+          </button>
         </section>
       )}
     </>
@@ -54,10 +49,13 @@ function useOutsideAlerter(ref: RefObject<HTMLElement>) {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (
-        (ref && ref.current && event && !ref.current.contains(event.target as Node)) ||
-        (event.target instanceof Element && event.target.classList.contains('close-bnt'))
-      ) {
+      const mainPage = event.target instanceof Element && event.target.closest('.mainPage');
+      const details = event.target instanceof Element && event.target.closest('.details');
+      const closeBtn =
+        event.target instanceof Element && event.target.classList.contains('close-bnt');
+      const labelText =
+        event.target instanceof Element && event.target.classList.contains('label-text');
+      if (closeBtn || (!!mainPage && !details && !labelText)) {
         navigate('/');
       }
     }
