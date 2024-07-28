@@ -1,13 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-
 import { Product, ArrayProducts } from '../../types/fetchTypes';
 
 export interface IStoreProduct {
   products: ArrayProducts | undefined;
 }
 
-const initialState: IStoreProduct = {
+export const initialState: IStoreProduct = {
   products: JSON.parse(localStorage.getItem('products')!) || [],
 };
 
@@ -41,7 +40,6 @@ export const productSlice = createSlice({
 });
 
 export const { selectProducts } = productSlice.selectors;
-
 export const { saveProduct, resetAllProduct } = productSlice.actions;
 
 export default productSlice.reducer;

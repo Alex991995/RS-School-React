@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import styles from '../styles/Pagination.module.css';
 import { pagesCutting, range } from '../utils/functionHelpers';
-import { allPages } from '../utils/constats';
+import { allPages } from '../utils/constants';
 
 interface IPagination {
   setPage: Dispatch<SetStateAction<string>>;

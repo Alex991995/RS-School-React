@@ -3,12 +3,12 @@ interface IButton {
   theme: boolean;
 }
 
-function Button({ onSwitch, theme }: IButton) {
+function ButtonTheme({ onSwitch, theme }: IButton) {
   return (
-    <button onClick={() => onSwitch(!theme)} className="button button__theme">
+    <button role="button-theme" onClick={() => onSwitch(!theme)} className="button button__theme">
       Switch on {theme ? 'dark' : 'light'}
     </button>
   );
 }
 
-export default Button;
+export default ButtonTheme;

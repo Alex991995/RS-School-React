@@ -13,8 +13,14 @@ function SelectedItems({ storedProducts }: SelectedItemsProps) {
 
   const headers = 'Id,Title,Description,Price';
   let rows = '';
+
   storedProducts?.forEach(item => {
-    rows += `${item.id},${item.title},${item.description},${item.price}\n`;
+    const id = item.id.toString().replace(/"/g, '""');
+    const title = item.title.replace(/"/g, '""');
+    const description = item.description.replace(/"/g, '""');
+    const price = item.price.toString().replace(/"/g, '""');
+
+    rows += `"${id}","${title}","${description}","${price}"\n`;
   });
   const csvContent = `data:text/csv;charset=utf-8,${headers}\n${rows}`;
 

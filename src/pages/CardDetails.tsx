@@ -16,7 +16,6 @@ function CardDetails() {
 
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
-
   return (
     <>
       {isFetching ? (
@@ -27,7 +26,12 @@ function CardDetails() {
             <div role="title-detail">{data?.title}</div>
 
             {data?.images && (
-              <img className={styles.imgItem} src={isJsonString(data.images)[0]} alt="product" />
+              <img
+                role="img-detail"
+                className={styles.imgItem}
+                src={isJsonString(data.images)[0]}
+                alt="product"
+              />
             )}
             <p>{data?.description}</p>
           </div>
