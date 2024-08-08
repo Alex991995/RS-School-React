@@ -20,9 +20,11 @@ function CardList({ dataFromApi }: CardListProps) {
   }
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const changedData = dataFromApi?.map(item => ({ ...item, checked: false }));
+    if (Array.isArray(dataFromApi)) {
+      const changedData = dataFromApi.map(item => ({ ...item, checked: false }));
       setDataWithChecked(changedData);
+    } else {
+      console.error('dataFromApi is not an array:', dataFromApi);
     }
   }, [dataFromApi]);
 

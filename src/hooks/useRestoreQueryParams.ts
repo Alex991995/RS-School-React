@@ -19,14 +19,6 @@ function useRestoreQueryParams(key: string): [string, Dispatch<SetStateAction<st
     }
   };
 
-  // const updateItem = (value: string) => {
-
-  //   setItem(value);
-  //   if (typeof window !== 'undefined') {
-  //     localStorage.setItem(key, value);
-  //   }
-  // };
-
   return [item, updateItem];
 }
 
