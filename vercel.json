@@ -1,3 +1,16 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/?title=&page=",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
