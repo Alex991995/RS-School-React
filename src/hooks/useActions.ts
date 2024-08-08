@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { productSlice } from '../features/slices/productSlice';
+import { productSlice } from '@/features/slices/productSlice';
 import { bindActionCreators } from '@reduxjs/toolkit';
 
 const AllActions = {

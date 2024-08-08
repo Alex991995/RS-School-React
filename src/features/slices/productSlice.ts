@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Product } from '../../types/fetchTypes';
+import { Product } from '@/types/fetchTypes';
 
 export interface IStoreProduct {
   products: Product[] | undefined;

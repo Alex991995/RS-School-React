@@ -1,0 +1,82 @@
+[data-theme='light'] {
+  --color-bg: #ffffff;
+  --color-fg: #000000;
+  --bg-color-button: #405cf5;
+
+  --bg-color-buttonActive: #ff0000;
+}
+
+[data-theme='dark'] {
+  --color-bg: #000000;
+  --color-fg: #ffffff;
+  --bg-color-button: #ff0000;
+
+  --bg-color-buttonActive: #405cf5;
+}
+
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.theme {
+  height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+}
+
+.button__theme {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 10;
+}
+
+.block-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.button-active {
+  background-color: var(--bg-color-buttonActive) !important;
+}
+
+.wrapper {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-fg);
+}
+
+.button {
+  background-color: var(--bg-color-button);
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 100%;
+  height: 44px;
+  outline: none;
+  padding: 0 25px;
+  transition:
+    all 0.2s,
+    box-shadow 0.08s ease-in;
+}
+
+.button:disabled {
+  cursor: default;
+}
+
+.button:focus {
+  box-shadow: rgba(50, 151, 211, 0.3) 0 0 0 4px;
+}
