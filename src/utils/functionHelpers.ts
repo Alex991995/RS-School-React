@@ -24,7 +24,7 @@ export function isJsonString(arr: string[]) {
   try {
     const parseArr = JSON.parse(arr.join());
     return parseArr;
-  } catch (e) {
+  } catch {
     return arr;
   }
 }
