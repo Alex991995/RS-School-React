@@ -1,12 +1,22 @@
-import styles from '../styles/SearchPage.module.css';
+import { useRouter } from 'next/router';
+import styles from '../styles/Layout.module.css';
+import { useRestoreQueryParams } from '../hooks/useRestoreQueryParams';
 
-interface ISearchInput {
-  title: string;
-  handleChange: (title: string) => void;
-  handelData: () => void;
-}
+function SearchInput() {
+  const router = useRouter();
+  const [title, setTitle] = useRestoreQueryParams('title');
+  const [, updateItem] = useRestoreQueryParams('page');
 
-function SearchInput({ title, handleChange, handelData }: ISearchInput) {
+  function handleChange(title: string) {
+    const value = title.trim();
+    setTitle(value);
+  }
+
+  function callData() {
+    router.push(`/?title=${title}&page=1`);
+    updateItem('1');
+  }
+
   return (
     <div className={styles.fetchDataBox}>
       <input
@@ -16,7 +26,7 @@ function SearchInput({ title, handleChange, handelData }: ISearchInput) {
         onChange={e => handleChange(e.target.value)}
         placeholder="Search"
       />
-      <button className={`button`} onClick={handelData}>
+      <button className={`button`} onClick={callData}>
         Search
       </button>
     </div>

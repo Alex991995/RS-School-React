@@ -1,13 +1,13 @@
-[data-theme='light'] {
+/* [data-theme='light'] {
   --bg-color-content: #687cee;
 }
 
 [data-theme='dark'] {
   --bg-color-content: rgb(251, 80, 80);
-}
+} */
 .selectedItems {
   position: absolute;
-  bottom: -11px;
+  bottom: 10px;
   right: 19%;
 }
 .content {
@@ -17,7 +17,8 @@
   border-radius: 25px;
   width: 300px;
   min-height: 120px;
-  background-color: var(--bg-color-content);
+  /* background-color: var(--bg-color-content); */
+  background-color: blue;
 }
 .content__buttons {
   display: flex;

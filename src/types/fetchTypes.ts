@@ -1,4 +1,6 @@
-export type ArrayProducts = Product[];
+export type ArrayProducts = {
+  data: Product[];
+};
 
 export interface Product {
   id: number;

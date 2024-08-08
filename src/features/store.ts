@@ -1,21 +1,24 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { productApi } from './slices/apiSlice';
 import productReducer from './slices/productSlice';
+import { createWrapper } from 'next-redux-wrapper';
 
 export const rootReducer = combineReducers({
   product: productReducer,
-  [productApi.reducerPath]: productApi.reducer,
 });
 
-export const setupStore = (preloadedState?: Partial<RootState>) => {
+export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(productApi.middleware),
-    preloadedState,
   });
+};
+
+export const makeStore = () => {
+  const store = setupStore();
+  return store;
 };
 
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = ReturnType<typeof setupStore>;
 export type AppDispatch = AppStore['dispatch'];
+export const wrapper = createWrapper<AppStore>(makeStore);
 export default setupStore;

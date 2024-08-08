@@ -1,20 +1,20 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
-import NotFoundPage from '../components/NotFound';
+// import { Route, Routes, useLocation } from 'react-router-dom';
+// import NotFoundPage from '../components/NotFound';
 
-function NotFoundProvider({ children }: { children: JSX.Element | JSX.Element[] }) {
-  const location = useLocation();
+// function NotFoundProvider({ children }: { children: JSX.Element | JSX.Element[] }) {
+//   const location = useLocation();
 
-  const ComponentNotFound = () => (
-    <Routes>
-      <Route path="/notfound" element={<NotFoundPage />} />
-    </Routes>
-  );
+//   const ComponentNotFound = () => (
+//     <Routes>
+//       <Route path="/notfound" element={<NotFoundPage />} />
+//     </Routes>
+//   );
 
-  if (location.pathname === '/notfound') {
-    return <ComponentNotFound />;
-  }
+//   if (location.pathname === '/notfound') {
+//     return <ComponentNotFound />;
+//   }
 
-  return <>{children}</>;
-}
+//   return <>{children}</>;
+// }
 
-export default NotFoundProvider;
+// export default NotFoundProvider;

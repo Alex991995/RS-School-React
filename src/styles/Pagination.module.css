@@ -1,10 +1,10 @@
-[data-theme='light'] {
+/* [data-theme='light'] {
   --bg-color-buttonActive: #ff0000;
-}
+} 
 
-[data-theme='dark'] {
+ [data-theme='dark'] {
   --bg-color-buttonActive: #405cf5;
-}
+}  */
 
 .block-buttons {
   display: flex;

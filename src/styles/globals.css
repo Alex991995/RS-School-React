@@ -2,12 +2,16 @@
   --color-bg: #ffffff;
   --color-fg: #000000;
   --bg-color-button: #405cf5;
+
+  --bg-color-buttonActive: #ff0000;
 }
 
 [data-theme='dark'] {
   --color-bg: #000000;
   --color-fg: #ffffff;
   --bg-color-button: #ff0000;
+
+  --bg-color-buttonActive: #405cf5;
 }
 
 :root {
@@ -29,6 +33,15 @@ body {
   right: 20px;
   top: 20px;
   z-index: 10;
+}
+
+.block-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.button-active {
+  background-color: var(--bg-color-buttonActive) !important;
 }
 
 .wrapper {

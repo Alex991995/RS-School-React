@@ -1,9 +1,8 @@
 import { useState } from 'react';
+import useActions from '../hooks/useActions';
+
 import styles from '../styles/Checkbox.module.css';
 import { Product } from '../types/fetchTypes';
-import { useAppDispatch } from '../hooks/reduxHooks';
-import { saveProduct } from '../features/slices/productSlice';
-
 interface CheckboxProps {
   checked?: boolean;
   product: Product;
@@ -11,11 +10,11 @@ interface CheckboxProps {
 
 function Checkbox({ checked, product }: CheckboxProps) {
   const [check, setChecked] = useState(false);
-  const dispatch = useAppDispatch();
+  const { saveProduct } = useActions();
 
   function handlerChecked(check: boolean, product: Product) {
     setChecked(check);
-    dispatch(saveProduct({ ...product, checked: check }));
+    saveProduct({ ...product, checked: check });
   }
 
   return (
