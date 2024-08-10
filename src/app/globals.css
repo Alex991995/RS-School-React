@@ -22,10 +22,14 @@ body {
   margin: 0;
 }
 
-.theme {
+.wrapper-theme {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 20px;
   height: 100vh;
-  background-color: var(--color-bg);
-  color: var(--color-fg);
 }
 
 .button__theme {
@@ -46,12 +50,8 @@ body {
 
 .wrapper {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: 20px;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
 }
 
 a {

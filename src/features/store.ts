@@ -5,7 +5,7 @@ export const rootReducer = combineReducers({
   product: productReducer,
 });
 
-export const setupStore = () => {
+const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
   });

@@ -24,7 +24,7 @@ export const productSlice = createSlice({
   reducers: {
     addData: (state, { payload }: PayloadAction<Product[]>) => {
       state.data = payload;
-      localStorage.setItem('data', JSON.stringify(payload));
+      typeof window !== 'undefined' && localStorage.setItem('data', JSON.stringify(payload));
     },
     saveProduct: (state, { payload }: PayloadAction<Product>) => {
       if (state.products?.length === 0) {

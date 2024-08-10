@@ -1,15 +1,15 @@
-import { resetAllProduct } from '../features/slices/productSlice';
-import { useAppDispatch } from '../hooks/reduxHooks';
 import styles from '../styles/SelectedItems.module.css';
 import { Product } from '../types/fetchTypes';
+import useActions from '@/hooks/useActions';
 
 interface SelectedItemsProps {
   storedProducts: Product[] | undefined;
 }
 
 function SelectedItems({ storedProducts }: SelectedItemsProps) {
+  const { resetAllProduct } = useActions();
+
   const numberOfSelectedItems = storedProducts?.length;
-  const dispatch = useAppDispatch();
 
   const headers = 'Id,Title,Description,Price';
   let rows = '';
@@ -33,13 +33,16 @@ function SelectedItems({ storedProducts }: SelectedItemsProps) {
   }
 
   return (
-    <>
-      {storedProducts && (
+    <div>
+      {storedProducts?.length !== 0 && (
         <div className={styles.selectedItems}>
           <div className={styles.content}>
-            <h3 className={styles['content__title']}>{isHowManyItems(numberOfSelectedItems)}</h3>
+            <div>
+              <h3 className={styles['content__title']}>{isHowManyItems(numberOfSelectedItems)}</h3>
+            </div>
+
             <div className={styles['content__buttons']}>
-              <button onClick={() => dispatch(resetAllProduct())} className="button">
+              <button onClick={() => resetAllProduct()} className="button">
                 Unselect all
               </button>
               <a href={encodedURI} className={`button ${styles['button__link']}`} download={name}>
@@ -49,7 +52,7 @@ function SelectedItems({ storedProducts }: SelectedItemsProps) {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

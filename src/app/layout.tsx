@@ -1,6 +1,15 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import StoreProvider from '@/hoc/ReduxProvider';
+import SearchInput from '@/components/SearchInput';
+import { getData } from '@/services/fetchFunction';
+import CardList from '@/components/CardList';
+import ButtonTheme from '@/components/ButtonTheme';
+import ThemeProviderWithButton from '@/hoc/ThemeProviderWithButton';
+import { ThemeProvider } from '@/hoc/theme';
+import Pagination from '@/components/Pagination';
+import styles from '../styles/Layout.module.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,31 +21,41 @@ export const metadata: Metadata = {
 interface RootLayoutProps {
   readonly children: React.ReactNode;
 }
+
 // export default function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({ children }: RootLayoutProps) {
   // const dataFromApi = useAppSelector(selectData);
-  // const theme = useContext(ThemeContext);
+
   // const storedProducts = useAppSelector(selectProducts);
+
+  //  console.log(title)
+  //  console.log(page)
+
+  // console.log(data)
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* <div className="theme" data-theme={theme?.theme ? 'light' : 'dark'}>
-          {theme && <ButtonTheme onSwitch={theme.toggleTheme} theme={theme.theme} />}
-          <div className="wrapper">
-            <div className={styles.manBox}>
-              <SearchInput />
-              {typeof window !== 'undefined' && dataFromApi?.length !== 0 && (
-                <CardList dataFromApi={dataFromApi} />
-              )}
-              <Pagination />
-            </div>
+        <StoreProvider>
+          <ThemeProvider>
+            {/* <div className="wrapper"> */}
+            <ThemeProviderWithButton>
+              <div className={styles.manBox}>
+                <SearchInput />
+                <CardList />
 
+                {/* <div className="wrapper"> */}
 
-            {storedProducts?.length !== 0 && <SelectedItems storedProducts={storedProducts} />}
-          </div>
-        </div> */}
-        {children}
+                <Pagination />
+              </div>
+
+              {/* </div> */}
+
+              {children}
+            </ThemeProviderWithButton>
+            {/* </div> */}
+          </ThemeProvider>
+        </StoreProvider>
       </body>
     </html>
   );
