@@ -26,10 +26,8 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname:'placeimg.com'
-      }
-
-
+        hostname: 'placeimg.com',
+      },
     ],
   },
 };

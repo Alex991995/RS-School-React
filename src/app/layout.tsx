@@ -1,15 +1,14 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import styles from '../styles/Layout.module.css';
+
 import StoreProvider from '@/hoc/ReduxProvider';
 import SearchInput from '@/components/SearchInput';
-import { getData } from '@/services/fetchFunction';
 import CardList from '@/components/CardList';
-import ButtonTheme from '@/components/ButtonTheme';
 import ThemeProviderWithButton from '@/hoc/ThemeProviderWithButton';
-import { ThemeProvider } from '@/hoc/theme';
 import Pagination from '@/components/Pagination';
-import styles from '../styles/Layout.module.css';
+import { ThemeProvider } from '@/hoc/theme';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,87 +21,24 @@ interface RootLayoutProps {
   readonly children: React.ReactNode;
 }
 
-// export default function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
 export default async function RootLayout({ children }: RootLayoutProps) {
-  // const dataFromApi = useAppSelector(selectData);
-
-  // const storedProducts = useAppSelector(selectProducts);
-
-  //  console.log(title)
-  //  console.log(page)
-
-  // console.log(data)
-
   return (
     <html lang="en">
       <body className={inter.className}>
         <StoreProvider>
           <ThemeProvider>
-            {/* <div className="wrapper"> */}
             <ThemeProviderWithButton>
               <div className={styles.manBox}>
                 <SearchInput />
                 <CardList />
-
-                {/* <div className="wrapper"> */}
-
                 <Pagination />
               </div>
 
-              {/* </div> */}
-
               {children}
             </ThemeProviderWithButton>
-            {/* </div> */}
           </ThemeProvider>
         </StoreProvider>
       </body>
     </html>
   );
 }
-
-// import { useContext } from 'react';
-// import dynamic from 'next/dynamic';
-
-// import ButtonTheme from './ButtonTheme';
-// import SearchInput from './SearchInput';
-// import { ThemeContext } from '../hoc/theme';
-// const SelectedItems = dynamic(() => import('./SelectedItems'), { ssr: false });
-// const Pagination = dynamic(() => import('./Pagination'), { ssr: false });
-// const CardList = dynamic(() => import('./CardList'), { ssr: false });
-
-// import { selectData, selectProducts } from '../features/slices/productSlice';
-// import { useAppSelector } from '../hooks/reduxHooks';
-// import styles from '../styles/Layout.module.css';
-
-// interface LayoutProps {
-//   children: React.ReactNode;
-// }
-
-// function Layout({ children }: LayoutProps) {
-//   const dataFromApi = useAppSelector(selectData);
-//   const theme = useContext(ThemeContext);
-//   const storedProducts = useAppSelector(selectProducts);
-
-//   return (
-//     <>
-//       <div className="theme" data-theme={theme?.theme ? 'light' : 'dark'}>
-//         {theme && <ButtonTheme onSwitch={theme.toggleTheme} theme={theme.theme} />}
-//         <div className="wrapper">
-//           <div className={styles.manBox}>
-//             <SearchInput />
-//             {typeof window !== 'undefined' && dataFromApi?.length !== 0 && (
-//               <CardList dataFromApi={dataFromApi} />
-//             )}
-//             <Pagination />
-//           </div>
-
-//           {children}
-//           {storedProducts?.length !== 0 && <SelectedItems storedProducts={storedProducts} />}
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
-
-// export default Layout;
