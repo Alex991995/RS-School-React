@@ -5,12 +5,6 @@ export const rootReducer = combineReducers({
   product: productReducer,
 });
 
-// const setupStore = () => {
-//   return configureStore({
-//     reducer: rootReducer,
-//   });
-// };
-
 export function setupStore(preloadedState?: Partial<RootState>) {
   return configureStore({
     reducer: rootReducer,
