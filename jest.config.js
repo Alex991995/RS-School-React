@@ -7,10 +7,14 @@ const createJestConfig = nextJest({
 const config = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   clearMocks: true,
+  globals: {
+    __DEV__: true,
+  },
 
   collectCoverage: true,
   collectCoverageFrom: [
     'src/components/**/*.{ts,tsx}',
+    'src/pages/**/*.{ts,tsx}',
     '!**/*.d.ts',
     '!**/node_modules/**',
     '!<rootDir>/out/**',

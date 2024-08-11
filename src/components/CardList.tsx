@@ -23,8 +23,6 @@ function CardList({ dataFromApi }: CardListProps) {
     if (Array.isArray(dataFromApi)) {
       const changedData = dataFromApi.map(item => ({ ...item, checked: false }));
       setDataWithChecked(changedData);
-    } else {
-      console.error('dataFromApi is not an array:', dataFromApi);
     }
   }, [dataFromApi]);
 

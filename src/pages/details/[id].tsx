@@ -7,6 +7,7 @@ import { RefObject, useEffect, useRef } from 'react';
 import styles from '../../styles/CardDetails.module.css';
 import { isJsonString } from '../../utils/functionHelpers';
 import { useRestoreQueryParams } from '../../hooks/useRestoreQueryParams';
+import Image from 'next/image';
 
 interface IParams extends ParsedUrlQuery {
   id: string;
@@ -28,8 +29,9 @@ function DetailCard(product: Product) {
         <div role="title-detail">{product?.title}</div>
 
         {product?.images && (
-          <img
-            role="img-detail"
+          <Image
+            width={300}
+            height={300}
             className={styles.imgItem}
             src={isJsonString(product.images)[0]}
             alt="product"
@@ -67,7 +69,7 @@ function useOutsideAlerter(ref: RefObject<HTMLElement>) {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [ref]);
+  }, [ref, page, router, title]);
 }
 
 export const getStaticProps: GetStaticProps = async context => {

@@ -14,16 +14,14 @@ describe('CardList component', () => {
   it('Render listItems from redux store', async () => {
     const store = setupStore();
     await act(async () => {
-      store.dispatch(addData(arrayMockProduct));
       store.dispatch(saveProduct({ ...mockProduct, checked: true }));
     });
 
     renderWithProviders(
-      <CardList />,
+      <CardList dataFromApi={arrayMockProduct} />,
 
       { store },
     );
-
     const productItems = await screen.findAllByRole('listitem');
     expect(productItems).toHaveLength(arrayMockProduct.length);
   });

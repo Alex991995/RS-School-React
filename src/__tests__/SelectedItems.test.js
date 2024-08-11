@@ -7,7 +7,7 @@ import { renderWithProviders } from '@/utils/test-utils';
 import userEvent from '@testing-library/user-event';
 
 describe('SelectedItems component', () => {
-  it('should correctly convert people data to CSV format', async () => {
+  it('render SelectedItems', async () => {
     renderWithProviders(<SelectedItems storedProducts={mockStoredProducts} />);
     const downloadLink = screen.getByRole('link', { name: /download/i });
 

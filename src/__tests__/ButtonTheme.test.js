@@ -5,7 +5,7 @@ import ButtonTheme from '../components/ButtonTheme';
 import userEvent from '@testing-library/user-event';
 
 describe('ButtonTheme component', () => {
-  it('', async () => {
+  it('Button change theme by clicking', async () => {
     render(<ButtonTheme onSwitch={jest.fn()} theme={false} />);
     const button = screen.getByRole('button-theme');
 

@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 
 import { setupStore } from '@/features/store';
 import type { AppStore, RootState } from '@/features/store';
+import { MemoryRouterProvider } from 'next-router-mock/MemoryRouterProvider';
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: Partial<RootState>;
@@ -20,7 +21,11 @@ export function renderWithProviders(
   }: ExtendedRenderOptions = {},
 ) {
   function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
-    return <Provider store={store}>{children}</Provider>;
+    return (
+      <MemoryRouterProvider>
+        <Provider store={store}>{children}</Provider>;
+      </MemoryRouterProvider>
+    );
   }
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 }
