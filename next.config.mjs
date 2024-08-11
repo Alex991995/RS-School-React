@@ -1,15 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // images: {
-  //   remotePatterns: [
-  //     {
-  //       protocol: 'https',
-  //       hostname: 'api.escuelajs.co',
-  //       port: '',
-  //       pathname: '/api/v1/products/**',
-  //     },
-  //   ],
-  // },
   images: {
     remotePatterns: [
       {
@@ -27,6 +17,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'placeimg.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.dummyjson.com',
       },
     ],
   },

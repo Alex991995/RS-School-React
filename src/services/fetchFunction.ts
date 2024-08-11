@@ -2,7 +2,7 @@ import { Product } from '@/types/fetchTypes';
 import { baseUrl } from '@/utils/constants';
 
 export async function getData(title: string, page: string): Promise<Product[]> {
-  const res = await fetch(`${baseUrl}/?title=${title}&offset=${page}&limit=10`);
+  const res = await fetch(`${baseUrl}/?limit=10&offset=${page}&title=${title}`);
   const data = (await res.json()) as Product[];
   return data;
 }

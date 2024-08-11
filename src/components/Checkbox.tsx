@@ -26,7 +26,7 @@ function Checkbox({ checked, product }: CheckboxProps) {
         type="checkbox"
         name="check"
       />
-      <span className={'label-text'}> {checked ? 'selected' : 'unselected'}</span>
+      <span className="label-text"> {checked ? 'selected' : 'unselected'}</span>
     </label>
   );
 }

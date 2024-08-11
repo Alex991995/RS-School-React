@@ -30,7 +30,6 @@ function SearchInput() {
       <input
         data-testid="input"
         className={styles.input}
-        // value={title}
         defaultValue={searchParams.get('title')?.toString()}
         onChange={e => handleChange(e.target.value)}
         placeholder="Search"

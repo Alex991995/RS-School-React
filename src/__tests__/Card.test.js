@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import Card from '../components/Card';
 import { expect, describe, it } from '@jest/globals';
 
-describe('Home', () => {
+describe('Card component', () => {
   it('renders a heading', () => {
     render(<Card id={1} title="bag" />);
 

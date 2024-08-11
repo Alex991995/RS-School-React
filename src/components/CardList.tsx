@@ -28,7 +28,7 @@ function CardList() {
   return (
     <>
       {dataWithChecked?.length !== 0 ? (
-        <ul className={styles.listItems}>
+        <ul role="listItems" className={styles.listItems}>
           {dataWithChecked?.map(item => (
             <li className={styles.item} key={item.id}>
               <Card key={item.id} id={item.id} title={item.title} />
