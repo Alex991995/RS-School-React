@@ -6,9 +6,10 @@ export const rootReducer = combineReducers({
   product: productReducer,
 });
 
-export const setupStore = () => {
+export const setupStore = (preloadedState?: Partial<RootState>) => {
   return configureStore({
     reducer: rootReducer,
+    preloadedState,
   });
 };
 

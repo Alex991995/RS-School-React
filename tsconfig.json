@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["@testing-library/jest-dom"],
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -12,14 +13,20 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    // "paths": {
-    //   "@/*": ["./src/*"]
-    // },
-    "baseUrl": "./",
     "paths": {
-      "@/components/*": ["components/*"]
-    }
+      "@/*": ["./src/*"]
+    },
+    // "baseUrl": "./",
+    // "paths": {
+    //   "@/components/*": ["components/*"]
+    // }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["./src/**/**.*",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "./jest.setup.js"
+  ],
   "exclude": ["node_modules"]
 }
