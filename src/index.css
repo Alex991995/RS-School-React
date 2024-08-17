@@ -25,13 +25,14 @@ h1 {
 }
 
 .wrapper-layout {
-  /* display: grid; */
-
   min-height: 100%;
   display: grid;
-  /* grid-template-rows: auto 1fr auto;  */
   grid-template-rows: 70px 1fr 70px;
   grid-template-columns: 100%;
+}
+
+.active-link {
+  color: rgb(146, 146, 239);
 }
 
 button {

@@ -205,3 +205,15 @@ export const country_list = [
   'Zambia',
   'Zimbabwe',
 ];
+
+export const fieldForm = [
+  'username',
+  'email',
+  'age',
+  'gender',
+  'password',
+  'passwordConfirmation',
+  'agree',
+  'img',
+  'country',
+];

@@ -8,7 +8,6 @@ function Layout() {
     <main className="wrapper-layout ">
       <Header />
       <Outlet />
-
       <Footer />
     </main>
   );

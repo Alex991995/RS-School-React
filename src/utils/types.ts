@@ -6,7 +6,7 @@ export type ObjFormType = {
   password?: string;
   passwordConfirmation?: string;
   agree?: boolean;
-  img?: string;
+  img?: File | null | string;
   country?: string;
 };
 

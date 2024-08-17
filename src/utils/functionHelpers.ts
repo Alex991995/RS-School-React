@@ -1,11 +1,3 @@
-// export const toBase64 = (file:File):Promise<string> => new Promise((resolve, reject) => {
-//   const reader = new FileReader();
-//   reader.readAsDataURL(file);
-
-//   reader.onload = () => resolve(reader.result);
-//   reader.onerror = reject;
-// });
-
 export const toBase64 = (file: File): Promise<string> =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -27,7 +19,7 @@ export const toBase64 = (file: File): Promise<string> =>
 
 export async function checkSize(file: File) {
   const tenMB = 10 * 1024 * 1024;
-  console.log(file.size, tenMB);
+
   if (!file || file.size > tenMB) {
     throw new Error('The size of img is too big');
   }

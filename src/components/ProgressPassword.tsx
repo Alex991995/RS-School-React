@@ -3,10 +3,11 @@ import styles from '../styles/ProgressPassword.module.css';
 import stylesForm from '../styles/UncontrolledForm.module.css';
 
 interface ProgressPasswordProps {
-  password: string;
+  password: string | undefined;
 }
 
 function ProgressPassword({ password }: ProgressPasswordProps) {
+  if (!password) return <span className={stylesForm.progress}></span>;
   let score = 0;
 
   if (!password) return '';
