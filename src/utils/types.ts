@@ -6,7 +6,7 @@ export type ObjFormType = {
   password?: string;
   passwordConfirmation?: string;
   agree?: boolean;
-  img?: File | null | string;
+  img?: FileList | null | string;
   country?: string;
 };
 
@@ -21,3 +21,15 @@ export type ObjErrorFormType = {
   img?: string;
   country?: string;
 };
+
+export interface FormElements extends HTMLFormElement {
+  username: HTMLInputElement;
+  age: HTMLInputElement;
+  email: HTMLInputElement;
+  gender: HTMLInputElement;
+  password: HTMLInputElement;
+  passwordConfirmation: HTMLInputElement;
+  agree: HTMLInputElement;
+  country: HTMLInputElement;
+  img: HTMLInputElement;
+}

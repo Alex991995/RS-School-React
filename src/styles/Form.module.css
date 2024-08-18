@@ -53,9 +53,9 @@
   padding: 25px 15px;
   border: 0;
   font-size: 18px;
-  &:hover {
+  /* &:hover {
     background: #0271da;
-  }
+  } */
 }
 
 .invalid {

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../styles/ProgressPassword.module.css';
-import stylesForm from '../styles/UncontrolledForm.module.css';
+import stylesForm from '../styles/Form.module.css';
 
 interface ProgressPasswordProps {
   password: string | undefined;

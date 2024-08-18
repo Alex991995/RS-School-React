@@ -1,53 +1,14 @@
-import React, { FormEvent, useEffect, useState } from 'react';
-import styles from '../styles/UncontrolledForm.module.css';
+import { FormEvent, useEffect, useState } from 'react';
+import styles from '../styles/Form.module.css';
 import * as Yup from 'yup';
-import { ObjFormType, ObjErrorFormType } from '../utils/types';
+import { ObjFormType, ObjErrorFormType, FormElements } from '../utils/types';
 import ProgressPassword from '../components/ProgressPassword';
-import { checkSize, toBase64 } from '../utils/functionHelpers';
+import { validationSchema, toBase64 } from '../utils/functionHelpers';
 import { fieldForm } from '../utils/constants';
 import ShowErrorField from '../components/ShowErrorField';
 import useActions from '../hooks/reduxHooks';
 import { country_list } from '../utils/constants';
 import { useNavigate } from 'react-router-dom';
-
-const validationSchema = Yup.object().shape({
-  username: Yup.string()
-    .required()
-    .matches(/^[A-Z]\w+/, 'please enter name with first uppercased letter '),
-  gender: Yup.string().required(),
-  country: Yup.string().required().oneOf(country_list, 'please choose from the list'),
-  email: Yup.string().required().email(),
-  age: Yup.number().required().positive(),
-  agree: Yup.boolean().required().isTrue(),
-  password: Yup.string().required(),
-  passwordConfirmation: Yup.string()
-    .required('Passwords must match')
-    .oneOf([Yup.ref('password')], 'Passwords must match'),
-  img: Yup.mixed()
-    .required()
-    .test('fileSize', 'The size of img is too big', async function (value) {
-      const { path, createError } = this;
-      try {
-        const file = value;
-        await checkSize(file as File);
-        return true;
-      } catch {
-        return createError({ path, message: ' big' });
-      }
-    }),
-});
-
-interface FormElements extends HTMLFormElement {
-  username: HTMLInputElement;
-  age: HTMLInputElement;
-  email: HTMLInputElement;
-  gender: HTMLInputElement;
-  password: HTMLInputElement;
-  passwordConfirmation: HTMLInputElement;
-  agree: HTMLInputElement;
-  country: HTMLInputElement;
-  img: HTMLInputElement;
-}
 
 function UncontrolledForm() {
   const { addData } = useActions();
@@ -70,9 +31,9 @@ function UncontrolledForm() {
       gender: elements.gender.value,
       age: +elements.age.value,
       password: elements.password.value,
-      passwordConfirmation: elements.confirmPassword.value,
+      passwordConfirmation: elements.passwordConfirmation.value,
       agree: elements.agree.checked,
-      img: elements.img.files ? elements.img.files[0] : null,
+      img: elements.img.files,
       country: elements.country.value,
     };
 
@@ -137,7 +98,7 @@ function UncontrolledForm() {
 
         <div className={styles.field}>
           <label className={styles.label}>Email</label>
-          <input id="email" type="text" className={styles.input} />
+          <input autoComplete="username" id="email" type="text" className={styles.input} />
           <ShowErrorField error={objErrors.email} />
         </div>
 
@@ -160,7 +121,7 @@ function UncontrolledForm() {
           <input
             onChange={e => setConfirmPassword(e.target.value)}
             autoComplete="new-password"
-            id="confirmPassword"
+            id="passwordConfirmation"
             type="password"
             className={styles.input}
           />
