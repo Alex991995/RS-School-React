@@ -1,0 +1,86 @@
+.wrapper-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  width: 100%;
+  background: #fff;
+  padding: 30px;
+  max-width: 450px;
+  border-radius: 10px;
+  box-shadow: rgba(3, 3, 3, 0.1) 10px 0px 50px;
+}
+
+.field {
+  position: relative;
+}
+.field-radio {
+  margin-top: 5px;
+  display: flex;
+  gap: 10px;
+  input {
+    margin-right: 5px;
+  }
+}
+
+.label {
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #777;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 0;
+  border: 0;
+  background: #f0f0f0;
+  border-radius: 5px;
+  font-size: 18px;
+  color: #555;
+  font-weight: 600;
+}
+
+.button {
+  background: #037ef3;
+  color: #fff;
+  font-weight: 600;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 25px 15px;
+  border: 0;
+  font-size: 18px;
+}
+
+.invalid {
+  border: 1px solid red;
+}
+
+.error {
+  min-height: 20px;
+  display: block;
+  color: red;
+}
+
+.progress {
+  min-height: 20px;
+  display: block;
+}
+
+.country-list {
+  position: absolute;
+  background-color: #f6f6f6;
+  border: 1px solid #ddd;
+  z-index: 1;
+  list-style: none;
+  padding: 0;
+}
+.country-item {
+  color: black;
+  padding: 5px;
+  text-decoration: none;
+  display: block;
+}

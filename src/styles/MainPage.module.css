@@ -1,0 +1,30 @@
+.mainBox {
+  margin: 0 auto;
+  max-width: 1500px;
+}
+.listUsers {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.user {
+  background-color: aqua;
+  border-radius: 20px;
+  padding: 10px;
+
+  &.lastUser {
+    background-color: rgb(248, 120, 120);
+  }
+}
+
+.userData {
+  font-weight: bolder;
+}
+.boxImg {
+  max-width: 300px;
+}
+.userImg {
+  width: 100%;
+}

@@ -1,1 +1,1 @@
-# RS-School-React
+# React + TypeScript + Redux + React Hook Form + Yup
