@@ -1,18 +1,21 @@
 import { FormEvent, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectCountries } from '../features/slices/usersSlice';
+import useActions from '../hooks/reduxHooks';
+
+import ShowErrorField from '../components/ShowErrorField';
 import styles from '../styles/Form.module.css';
+
 import * as Yup from 'yup';
 import { ObjFormType, ObjErrorFormType, FormElements } from '../utils/types';
 import ProgressPassword from '../components/ProgressPassword';
 import { validationSchema, toBase64 } from '../utils/functionHelpers';
 import { fieldForm } from '../utils/constants';
-import ShowErrorField from '../components/ShowErrorField';
-import useActions from '../hooks/reduxHooks';
-import { country_list } from '../utils/constants';
-import { useNavigate } from 'react-router-dom';
 
 function UncontrolledForm() {
   const { addData } = useActions();
-
+  const country_list = useSelector(selectCountries);
   const navigate = useNavigate();
 
   const [objErrors, setObjErrors] = useState<ObjErrorFormType>({});

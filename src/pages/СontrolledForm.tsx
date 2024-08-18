@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import styles from '../styles/Form.module.css';
+import { useEffect, useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import useActions from '../hooks/reduxHooks';
 import { useNavigate } from 'react-router-dom';
-import { ObjFormType } from '../utils/types';
-import { toBase64, validationSchema } from '../utils/functionHelpers';
-// import * as Yup from 'yup';
+import { selectCountries } from '../features/slices/usersSlice';
+import { useSelector } from 'react-redux';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import styles from '../styles/Form.module.css';
 import ProgressPassword from '../components/ProgressPassword';
 import ShowErrorField from '../components/ShowErrorField';
-import { country_list } from '../utils/constants';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+
+import { ObjFormType } from '../utils/types';
+import { toBase64, validationSchema } from '../utils/functionHelpers';
 
 function FormСontrolled() {
   const {
@@ -24,6 +26,7 @@ function FormСontrolled() {
 
   const { addData } = useActions();
   const navigate = useNavigate();
+  const country_list = useSelector(selectCountries);
 
   const [dataOfUser, setDataOfUser] = useState<ObjFormType>({});
 
@@ -50,7 +53,6 @@ function FormСontrolled() {
 
   useEffect(() => {
     if (Object.keys(dataOfUser).length !== 0) {
-      console.log(dataOfUser);
       addData(dataOfUser);
       navigate('/');
     }

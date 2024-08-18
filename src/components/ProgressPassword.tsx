@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from '../styles/ProgressPassword.module.css';
 import stylesForm from '../styles/Form.module.css';
 
